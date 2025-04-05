@@ -247,6 +247,16 @@ const editorReducer = (
 			return clickedState;
 
 		case "CHANGE_DEVICE":
+			const changedDeviceState = {
+				...state,
+				editor: {
+					...state.editor,
+					device: action.payload.device,
+				},
+			};
+
+         return changedDeviceState;
+         
 		case "TOGGLE_PREVIEW_MODE":
 		case "TOGGLE_LIVE_MODE":
 		case "REDO":
