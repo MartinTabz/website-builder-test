@@ -1,8 +1,7 @@
 import EditorProvider from "@/providers/editor/editor-provider";
-import { pages } from "@/utils/data";
-import { Page } from "@/utils/types";
 import { notFound } from "next/navigation";
 import PageEditorNavigation from "./_components/page-editor-navigation";
+import { getSupabase } from "@/lib/supabase";
 
 type Props = {
 	params: Promise<{ pageId: string }>;
@@ -11,9 +10,20 @@ type Props = {
 export default async function FunnelPage({ params }: Props) {
 	const { pageId } = await params;
 
-	const pageDetails = pages.find((page: Page) => page.id === pageId);
+	const supabase = getSupabase();
 
-	if (pageDetails == undefined) {
+	const { data: pageDetails, error: pageErr } = await supabase
+		.from("pages")
+		.select("*")
+		.eq("id", pageId)
+		.single();
+
+	if (pageErr && pageErr.details != "The result contains 0 rows") {
+		console.error(pageErr);
+		throw new Error("Něco se pokazilo při načítání stránky");
+	}
+
+	if (!pageDetails) {
 		notFound();
 	}
 

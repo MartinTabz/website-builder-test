@@ -3,7 +3,6 @@
 import { EditorBtns } from "@/utils/constants";
 import { EditorAction } from "./editor-actions";
 import { createContext, Dispatch, useContext, useReducer } from "react";
-import { Page } from "@/utils/types";
 
 export type DeviceTypes = "Desktop" | "Mobile" | "Tablet";
 
