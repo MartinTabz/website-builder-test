@@ -328,6 +328,30 @@ const editorReducer = (
 			};
 
 		case "SET_PAGE_ID":
+			const { pageId } = action.payload;
+
+			const updatedEditorStateWithPageId = {
+				...state.editor,
+				pageId,
+			};
+
+			const updatedHistoryWithPageId = [
+				...state.history.history.slice(0, state.history.currentIndex + 1),
+				{ ...updatedEditorStateWithPageId },
+			];
+
+			const pageIdState = {
+				...state,
+				editor: updatedEditorStateWithPageId,
+				history: {
+					...state.history,
+					history: updatedHistoryWithPageId,
+					currentIndex: updatedHistoryWithPageId.length - 1,
+				},
+			};
+
+			return pageIdState;
+
 		default:
 			return state;
 	}
