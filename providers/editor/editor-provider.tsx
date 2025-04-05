@@ -219,9 +219,33 @@ const editorReducer = (
 				},
 			};
 
-         return deletedState;
-         
+			return deletedState;
+
 		case "CHANGE_CLICKED_ELEMENT":
+			const clickedState = {
+				...state,
+				editor: {
+					...state.editor,
+					selectedElement: action.payload.elementDetails || {
+						id: "",
+						content: [],
+						name: "",
+						styles: {},
+						type: null,
+					},
+				},
+				history: {
+					...state.history,
+					history: [
+						...state.history.history.slice(0, state.history.currentIndex + 1),
+						{ ...state.editor },
+					],
+					currentIndex: state.history.currentIndex + 1,
+				},
+			};
+
+			return clickedState;
+
 		case "CHANGE_DEVICE":
 		case "TOGGLE_PREVIEW_MODE":
 		case "TOGGLE_LIVE_MODE":
