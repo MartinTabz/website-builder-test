@@ -1,3 +1,4 @@
+import EditorProvider from "@/providers/editor/editor-provider";
 import { pages } from "@/utils/data";
 import { Page } from "@/utils/types";
 import { notFound } from "next/navigation";
@@ -17,7 +18,9 @@ export default async function FunnelPage({ params }: Props) {
 
 	return (
 		<div className="fixed top-0 bottom-0 left-0 right-0 z-[20] bg-background overflow-hidden">
-			<pre>{JSON.stringify(pageDetails, null, 2)}</pre>
+			<EditorProvider pageId={pageId} pageDetails={pageDetails}>
+				<div></div>
+			</EditorProvider>
 		</div>
 	);
 }
