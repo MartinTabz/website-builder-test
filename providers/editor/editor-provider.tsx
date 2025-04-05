@@ -255,9 +255,19 @@ const editorReducer = (
 				},
 			};
 
-         return changedDeviceState;
-         
+			return changedDeviceState;
+
 		case "TOGGLE_PREVIEW_MODE":
+			const toggleState = {
+				...state,
+				editor: {
+					...state.editor,
+					previewMode: !state.editor.previewMode,
+				},
+			};
+
+			return toggleState;
+
 		case "TOGGLE_LIVE_MODE":
 		case "REDO":
 		case "UNDO":
