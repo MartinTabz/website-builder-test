@@ -282,7 +282,41 @@ const editorReducer = (
 			return toggleLiveState;
 
 		case "REDO":
+			if (state.history.currentIndex < state.history.history.length - 1) {
+				const nextIndex = state.history.currentIndex + 1;
+				const nextEditorState = { ...state.history.history[nextIndex] };
+				const redoState = {
+					...state,
+					editor: nextEditorState,
+					history: {
+						...state.history,
+						currentIndex: nextIndex,
+					},
+				};
+
+				return redoState;
+			}
+
+			return state;
+
 		case "UNDO":
+			if (state.history.currentIndex > 0) {
+				const prevIndex = state.history.currentIndex - 1;
+				const prevEditorState = { ...state.history.history[prevIndex] };
+				const undoState = {
+					...state,
+					editor: prevEditorState,
+					history: {
+						...state.history,
+						currentIndex: prevIndex,
+					},
+				};
+
+				return undoState;
+			}
+
+			return state;
+
 		case "LOAD_LOCALSTORAGE":
 		case "LOAD_DATA":
 		case "SET_PAGE_ID":
