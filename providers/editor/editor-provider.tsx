@@ -1,5 +1,7 @@
 import { EditorBtns } from "@/utils/constants";
 import { EditorAction } from "./editor-actions";
+import { createContext, Dispatch, useContext, useReducer } from "react";
+import { Page } from "@/utils/types";
 
 export type DeviceTypes = "Desktop" | "Mobile" | "Tablet";
 
@@ -356,3 +358,55 @@ const editorReducer = (
 			return state;
 	}
 };
+
+export type EditorContextData = {
+	device: DeviceTypes;
+	previewMode: boolean;
+	setPreviewMode: (previewMode: boolean) => void;
+	setDevice: (device: DeviceTypes) => void;
+};
+
+export const EditorContext = createContext<{
+	state: EditorState;
+	dispatch: Dispatch<EditorAction>;
+	pageId: string;
+	pageDetails: Page | null;
+}>({
+	state: initialState,
+	dispatch: () => undefined,
+	pageId: "",
+	pageDetails: null,
+});
+
+type EditorProps = {
+	children: React.ReactNode;
+	pageId: string;
+	pageDetails: Page;
+};
+
+const EditorProvider = (props: EditorProps) => {
+	const [state, dispatch] = useReducer(editorReducer, initialState);
+
+	return (
+		<EditorContext.Provider
+			value={{
+				state,
+				dispatch,
+				pageId: props.pageId,
+				pageDetails: props.pageDetails,
+			}}
+		>
+			{props.children}
+		</EditorContext.Provider>
+	);
+};
+
+export const useEditor = () => {
+	const context = useContext(EditorContext);
+	if (!context) {
+		throw new Error("useEditor Hook must be used within the editor Provider");
+	}
+	return context;
+};
+
+export default EditorProvider;
