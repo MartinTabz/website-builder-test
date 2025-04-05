@@ -269,6 +269,18 @@ const editorReducer = (
 			return toggleState;
 
 		case "TOGGLE_LIVE_MODE":
+			const toggleLiveState = {
+				...state,
+				editor: {
+					...state.editor,
+					liveMode: action.payload
+						? action.payload.value
+						: !state.editor.liveMode,
+				},
+			};
+
+			return toggleLiveState;
+
 		case "REDO":
 		case "UNDO":
 		case "LOAD_LOCALSTORAGE":
