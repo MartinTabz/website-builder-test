@@ -44,12 +44,6 @@ export type EditorAction =
 	| { type: "REDO" }
 	| { type: "UNDO" }
 	| {
-			type: "LOAD_LOCALSTORAGE";
-			payload: {
-				pageId: string;
-			};
-	  }
-	| {
 			type: "LOAD_DATA";
 			payload: {
 				elements: EditorElement[];

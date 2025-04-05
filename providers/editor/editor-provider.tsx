@@ -316,8 +316,7 @@ const editorReducer = (
 			}
 
 			return state;
-
-		case "LOAD_LOCALSTORAGE":
+         
 		case "LOAD_DATA":
 		case "SET_PAGE_ID":
 		default:
