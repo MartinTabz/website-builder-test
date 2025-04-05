@@ -316,8 +316,17 @@ const editorReducer = (
 			}
 
 			return state;
-         
+
 		case "LOAD_DATA":
+			return {
+				...initialState,
+				editor: {
+					...initialState.editor,
+					elements: action.payload.elements || initialEditorState.elements,
+					liveMode: !!action.payload.withLive,
+				},
+			};
+
 		case "SET_PAGE_ID":
 		default:
 			return state;
