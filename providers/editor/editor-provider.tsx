@@ -63,8 +63,6 @@ const initialState: EditorState = {
 	history: initialHistoryState,
 };
 
-
-
 const addAnElement = (
 	editorArray: EditorElement[],
 	action: EditorAction
@@ -86,6 +84,28 @@ const addAnElement = (
 				content: addAnElement(item.content, action),
 			};
 		}
+		return item;
+	});
+};
+
+const updateAnElement = (
+	editorArray: EditorElement[],
+	action: EditorAction
+): EditorElement[] => {
+	if (action.type !== "UPDATE_ELEMENT") {
+		throw Error("You sent the wrong action type to the update Element State");
+	}
+
+	return editorArray.map((item) => {
+		if (item.id === action.payload.elementDetails.id) {
+			return { ...item, ...action.payload.elementDetails };
+		} else if (item.content && Array.isArray(item.content)) {
+			return {
+				...item,
+				content: updateAnElement(item.content, action),
+			};
+		}
+
 		return item;
 	});
 };
@@ -117,6 +137,42 @@ const editorReducer = (
 			return newEditorState;
 
 		case "UPDATE_ELEMENT":
+			const updatedElements = updateAnElement(state.editor.elements, action);
+
+			const UpdatedElementIsSelected =
+				state.editor.selectedElement.id === action.payload.elementDetails.id;
+
+			const updatedEditorStateWithUpdate = {
+				...state.editor,
+				elements: updatedElements,
+				selectedElement: UpdatedElementIsSelected
+					? action.payload.elementDetails
+					: {
+							id: "",
+							content: [],
+							name: "",
+							styles: {},
+							type: null,
+					  },
+			};
+
+			const updatedHistoryWithUpdate = [
+				...state.history.history.slice(0, state.history.currentIndex + 1),
+				{ ...updatedEditorStateWithUpdate },
+			];
+
+			const updatedEditor = {
+				...state,
+				editor: updatedEditorStateWithUpdate,
+				history: {
+					...state.history,
+					history: updatedHistoryWithUpdate,
+					currentIndex: updatedHistoryWithUpdate.length - 1,
+				},
+			};
+
+			return updatedEditor;
+
 		case "DELETE_ELEMENT":
 		case "CHANGE_CLICKED_ELEMENT":
 		case "CHANGE_DEVICE":
