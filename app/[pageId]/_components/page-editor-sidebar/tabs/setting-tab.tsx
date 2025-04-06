@@ -635,6 +635,7 @@ export default function SettingsTab() {
 							</Tabs>
 						</div>
 
+						{/* Flex direction */}
 						<div className="flex flex-col gap-2 w-full">
 							<Label className="text-muted-foreground">
 								{"Směr (Direction)"}

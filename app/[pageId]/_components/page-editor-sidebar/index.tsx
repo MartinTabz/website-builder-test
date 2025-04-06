@@ -2,7 +2,6 @@
 
 import {
 	Sheet,
-	SheetClose,
 	SheetContent,
 	SheetDescription,
 	SheetHeader,
@@ -13,6 +12,8 @@ import { useEditor } from "@/providers/editor/editor-provider";
 import clsx from "clsx";
 import TabList from "./tabs";
 import SettingsTab from "./tabs/setting-tab";
+import { Upload } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 type Props = {
 	pageId: string;
@@ -58,6 +59,39 @@ export default function PageEditorSidebar({ pageId }: Props) {
 								</SheetDescription>
 							</SheetHeader>
 							<SettingsTab />
+						</TabsContent>
+						<TabsContent value="Media">
+							<SheetHeader className="text-left p-6">
+								<SheetTitle>Obsah</SheetTitle>
+								<SheetDescription>
+									Zde se mohou načítat obrázky z databáze
+								</SheetDescription>
+							</SheetHeader>
+							<div className="flex flex-col gap-3 p-6">
+								<Button>
+									<Upload />
+								</Button>
+								<div className="mt-2">
+									<img
+										className="w-full h-[120px] object-cover rounded-t-md"
+										src={
+											"https://elvora.cz/cdn/shop/files/elvora-migraineband.webp"
+										}
+										alt=""
+									/>
+									<div className="bg-accent rounded-b-md grid grid-cols-4 p-3 h-20 items-center justify-between">
+										<div className="col-span-3 flex flex-col">
+											<span className="text-xs">Po,Led 1.1.2025</span>
+											<b className="text-sm">Maska</b>
+										</div>
+										<div className="flex flex-col gap-0.5 items-end pr-3 cursor-pointer">
+											<div className="bg-primary w-1 h-1 rounded-full"></div>
+											<div className="bg-primary w-1 h-1 rounded-full"></div>
+											<div className="bg-primary w-1 h-1 rounded-full"></div>
+										</div>
+									</div>
+								</div>
+							</div>
 						</TabsContent>
 					</div>
 				</SheetContent>
