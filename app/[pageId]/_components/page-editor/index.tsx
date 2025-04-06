@@ -6,6 +6,7 @@ import { createClient } from "@/utils/supabase/client";
 import clsx from "clsx";
 import { EyeOff } from "lucide-react";
 import { useEffect } from "react";
+import Recursive from "./page-editor-components/recursive";
 
 type Props = {
 	pageId: string;
@@ -92,7 +93,10 @@ export default function PageEditor({ pageId, liveMode }: Props) {
 					<EyeOff />
 				</Button>
 			)}
-
+			{Array.isArray(state.editor.elements) &&
+				state.editor.elements.map((childElement) => (
+					<Recursive key={childElement.id} element={childElement} />
+				))}
 		</div>
 	);
 }
