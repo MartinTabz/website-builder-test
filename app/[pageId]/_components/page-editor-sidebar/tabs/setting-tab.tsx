@@ -230,7 +230,7 @@ export default function SettingsTab() {
 									id="fontSize"
 									placeholder="px"
 									onChange={handleOnChanges}
-									value={state.editor.selectedElement.styles.fontSize}
+									value={state.editor.selectedElement.styles.fontSize || ""}
 								/>
 							</div>
 						</div>

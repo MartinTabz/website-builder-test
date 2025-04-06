@@ -30,7 +30,7 @@ export default function Container({ element }: Props) {
 							id: v4(),
 							name: "Text",
 							styles: {
-								color: "black",
+								color: "#000000",
 								...defaultStyles,
 							},
 							type: "text",

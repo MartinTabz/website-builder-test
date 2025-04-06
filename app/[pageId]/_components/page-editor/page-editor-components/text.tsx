@@ -50,6 +50,7 @@ export default function TextComponent({ element }: Props) {
 				)}
 			<span
 				contentEditable={!state.editor.liveMode}
+				suppressContentEditableWarning={true}
 				onBlur={(e) => {
 					const spanElement = e.target as HTMLSpanElement;
 					dispatch({

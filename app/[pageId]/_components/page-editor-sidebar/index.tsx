@@ -14,6 +14,7 @@ import TabList from "./tabs";
 import SettingsTab from "./tabs/setting-tab";
 import { Upload } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import ComponentsTab from "./tabs/components-tab";
 
 type Props = {
 	pageId: string;
@@ -92,6 +93,15 @@ export default function PageEditorSidebar({ pageId }: Props) {
 									</div>
 								</div>
 							</div>
+						</TabsContent>
+						<TabsContent value="Components">
+							<SheetHeader className="text-left p-6">
+								<SheetTitle>Komponenty</SheetTitle>
+								<SheetDescription>
+									Můžeš přetánout a vložit komponenty do editoru
+								</SheetDescription>
+							</SheetHeader>
+							<ComponentsTab />
 						</TabsContent>
 					</div>
 				</SheetContent>
