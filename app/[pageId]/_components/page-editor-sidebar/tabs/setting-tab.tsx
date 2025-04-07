@@ -168,7 +168,7 @@ export default function SettingsTab() {
 							<Input
 								id="fontFamily"
 								onChange={handleOnChanges}
-								value={state.editor.selectedElement.styles.fontFamily}
+								value={state.editor.selectedElement.styles.fontFamily || ""}
 							/>
 						</div>
 
@@ -206,7 +206,7 @@ export default function SettingsTab() {
 											},
 										});
 									}}
-									value={state.editor.selectedElement.styles.fontWeight?.toString()}
+									value={state.editor.selectedElement.styles.fontWeight?.toString() || ""}
 								>
 									<SelectTrigger className="w-full">
 										<SelectValue placeholder="Vyber váhu" />
@@ -247,7 +247,7 @@ export default function SettingsTab() {
 									id="height"
 									placeholder="px"
 									onChange={handleOnChanges}
-									value={state.editor.selectedElement.styles.height}
+									value={state.editor.selectedElement.styles.height || ""}
 								/>
 							</div>
 							<div className="flex flex-col gap-2">
@@ -256,7 +256,7 @@ export default function SettingsTab() {
 									id="width"
 									placeholder="px"
 									onChange={handleOnChanges}
-									value={state.editor.selectedElement.styles.width}
+									value={state.editor.selectedElement.styles.width || ""}
 								/>
 							</div>
 						</div>
@@ -272,7 +272,7 @@ export default function SettingsTab() {
 									id="marginTop"
 									placeholder="px"
 									onChange={handleOnChanges}
-									value={state.editor.selectedElement.styles.marginTop}
+									value={state.editor.selectedElement.styles.marginTop || ""}
 								/>
 							</div>
 							<div className="flex flex-col gap-2">
@@ -281,7 +281,7 @@ export default function SettingsTab() {
 									id="marginBottom"
 									placeholder="px"
 									onChange={handleOnChanges}
-									value={state.editor.selectedElement.styles.marginBottom}
+									value={state.editor.selectedElement.styles.marginBottom || ""}
 								/>
 							</div>
 							<div className="flex flex-col gap-2">
@@ -290,7 +290,7 @@ export default function SettingsTab() {
 									id="marginLeft"
 									placeholder="px"
 									onChange={handleOnChanges}
-									value={state.editor.selectedElement.styles.marginLeft}
+									value={state.editor.selectedElement.styles.marginLeft || ""}
 								/>
 							</div>
 							<div className="flex flex-col gap-2">
@@ -299,7 +299,7 @@ export default function SettingsTab() {
 									id="marginRight"
 									placeholder="px"
 									onChange={handleOnChanges}
-									value={state.editor.selectedElement.styles.marginRight}
+									value={state.editor.selectedElement.styles.marginRight || ""}
 								/>
 							</div>
 						</div>
@@ -315,7 +315,7 @@ export default function SettingsTab() {
 									id="paddingTop"
 									placeholder="px"
 									onChange={handleOnChanges}
-									value={state.editor.selectedElement.styles.paddingTop}
+									value={state.editor.selectedElement.styles.paddingTop || ""}
 								/>
 							</div>
 							<div className="flex flex-col gap-2">
@@ -324,7 +324,7 @@ export default function SettingsTab() {
 									id="paddingBottom"
 									placeholder="px"
 									onChange={handleOnChanges}
-									value={state.editor.selectedElement.styles.paddingBottom}
+									value={state.editor.selectedElement.styles.paddingBottom || ""}
 								/>
 							</div>
 							<div className="flex flex-col gap-2">
@@ -333,7 +333,7 @@ export default function SettingsTab() {
 									id="paddingLeft"
 									placeholder="px"
 									onChange={handleOnChanges}
-									value={state.editor.selectedElement.styles.paddingLeft}
+									value={state.editor.selectedElement.styles.paddingLeft || ""}
 								/>
 							</div>
 							<div className="flex flex-col gap-2">
@@ -342,7 +342,7 @@ export default function SettingsTab() {
 									id="paddingRight"
 									placeholder="px"
 									onChange={handleOnChanges}
-									value={state.editor.selectedElement.styles.paddingRight}
+									value={state.editor.selectedElement.styles.paddingRight || ""}
 								/>
 							</div>
 						</div>

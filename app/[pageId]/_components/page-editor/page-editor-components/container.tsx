@@ -37,6 +37,7 @@ export default function Container({ element }: Props) {
 						},
 					},
 				});
+				break;
 			case "container":
 				dispatch({
 					type: "ADD_ELEMENT",
@@ -53,6 +54,7 @@ export default function Container({ element }: Props) {
 						},
 					},
 				});
+				break;
 			default:
 				break;
 		}
@@ -118,7 +120,7 @@ export default function Container({ element }: Props) {
 		>
 			<Badge
 				className={clsx(
-					"absolute -top-[23px] -left-[1px] rounded-none rounded-t-lg hidden",
+					"absolute -top-[23px] -left-[1px] rounded-none rounded-t-lg hidden bg-blue-500 text-white",
 					{
 						block:
 							state.editor.selectedElement.id === element.id &&
@@ -137,7 +139,7 @@ export default function Container({ element }: Props) {
 			{state.editor.selectedElement.id === element.id &&
 				!state.editor.liveMode &&
 				state.editor.selectedElement.type !== "__body" && (
-					<div className="absolute bg-primary px-2.5 py-1 text-xs font-bold -top-[25px] -right-[1px] rounded-none rounded-t-lg">
+					<div className="absolute px-2.5 py-1 text-xs font-bold -top-[25px] -right-[1px] rounded-none rounded-t-lg bg-blue-500 text-white">
 						<Trash size={16} onClick={handleDeleteElement} />
 					</div>
 				)}

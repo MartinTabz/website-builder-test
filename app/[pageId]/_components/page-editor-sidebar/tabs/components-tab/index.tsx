@@ -6,6 +6,7 @@ import {
 } from "@/components/ui/accordion";
 import { EditorBtns } from "@/utils/constants";
 import TextPlaceholder from "./text-placeholder";
+import ContainerPlaceholder from "./container-placeholder";
 
 type Props = {};
 
@@ -21,6 +22,12 @@ export default function ComponentsTab(props: Props) {
 			label: "Text",
 			id: "text",
 			group: "elements",
+		},
+		{
+			Component: <ContainerPlaceholder />,
+			label: "Kontejner",
+			id: "container",
+			group: "layout",
 		},
 	];
 

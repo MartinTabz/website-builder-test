@@ -44,7 +44,7 @@ export default function TextComponent({ element }: Props) {
 		>
 			{state.editor.selectedElement.id === element.id &&
 				!state.editor.liveMode && (
-					<Badge className="absolute -top-[23px] -left-[1px] rounded-none rounded-t-lg">
+					<Badge className="absolute -top-[23px] -left-[1px] rounded-none rounded-t-lg bg-blue-500 text-white">
 						{state.editor.selectedElement.name}
 					</Badge>
 				)}
@@ -70,7 +70,7 @@ export default function TextComponent({ element }: Props) {
 			</span>
 			{state.editor.selectedElement.id === element.id &&
 				!state.editor.liveMode && (
-					<div className="absolute bg-primary px-2.5 py-1 text-xs font-bold -top-[25px] -right-[1px] rounded-none rounded-t-lg !text-white">
+					<div className="absolute px-2.5 py-1 text-xs font-bold -top-[25px] -right-[1px] rounded-none rounded-t-lg !text-white bg-blue-500">
 						<Trash
 							className="cursor-pointer"
 							size={16}
